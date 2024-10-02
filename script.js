@@ -1,9 +1,10 @@
 let leadsArray = []
 
 const inputEl = document.querySelector("#input-el")
-const saveBtn = document.querySelector("#save-btn")
 const listEl = document.querySelector("#list-el")
-const clearLeads = document.querySelector("#clear-btn")
+const saveBtn = document.querySelector("#save-btn")
+const clearLeadsBtn = document.querySelector("#clear-btn")
+const getUrlBtn = document.querySelector("#get-url-btn")
 
 const getLeadsArray = JSON.parse(localStorage.getItem("leadsArray"))
 
@@ -40,7 +41,15 @@ saveBtn.addEventListener("click", function() {
     }
 })
 
-clearLeads.addEventListener("click", function() {
+getUrlBtn.addEventListener("click", function() {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        leadsArray.push(tabs[0].url)
+        localStorage.setItem("leadsArray", JSON.stringify(leadsArray))
+        renderListItem()
+    })
+})
+
+clearLeadsBtn.addEventListener("click", function() {
     // history.go(0) - no need to refresh
     localStorage.clear()
     leadsArray = []
