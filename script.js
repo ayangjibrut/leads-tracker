@@ -1,8 +1,8 @@
 let leadsArray = []
 
-const inputEl = document.querySelector("#input-el")
+// const inputEl = document.querySelector("#input-el")
+// const saveBtn = document.querySelector("#save-btn")
 const listEl = document.querySelector("#list-el")
-const saveBtn = document.querySelector("#save-btn")
 const clearLeadsBtn = document.querySelector("#clear-btn")
 const getUrlBtn = document.querySelector("#get-url-btn")
 
@@ -18,28 +18,28 @@ function renderListItem() {
     leadsArray.forEach(function(lead) {
         listEl.innerHTML += `
             <li>
-                <a target="_blank" href="${lead}">${lead}</a>
+                <a target="_blank" href="http//${lead}">${lead}</a>
             </li>
         `
     })
 }
 
-inputEl.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-      event.preventDefault()
-      saveBtn.click()
-    }
-})
+// inputEl.addEventListener("keypress", function(event) {
+//     if (event.key === "Enter") {
+//       event.preventDefault()
+//       saveBtn.click()
+//     }
+// })
 
-saveBtn.addEventListener("click", function() {
-    const lead = inputEl.value
-    if (lead) { // to check input if true or false, so empty input won't be submitted.
-        leadsArray.push(lead)
-        renderListItem()
-        inputEl.value = ""
-        localStorage.setItem("leadsArray", JSON.stringify(leadsArray))
-    }
-})
+// saveBtn.addEventListener("click", function() {
+//     const lead = inputEl.value
+//     if (lead) { // to check input if true or false, so empty input won't be submitted.
+//         leadsArray.push(lead)
+//         renderListItem()
+//         inputEl.value = ""
+//         localStorage.setItem("leadsArray", JSON.stringify(leadsArray))
+//     }
+// })
 
 getUrlBtn.addEventListener("click", function() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
