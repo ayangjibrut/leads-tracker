@@ -14,15 +14,28 @@ if (getLeadsArray) {
 }
 
 function renderListItem() {
-    listEl.innerHTML = ""
-    leadsArray.forEach(function(lead) {
-        listEl.innerHTML += `
-            <li>
-                <a target="_blank" href="http//${lead}">${lead}</a>
-            </li>
-        `
-    })
+    let listItem = ""
+    for (let i = 0; i < leadsArray.length; i++) {
+        listItem += `
+        <li>
+            <a target="_blank" href="${leadsArray[i]}">${leadsArray[i]}</a>
+            <hr width="400px" />
+        </li>
+    `
+    }
+    listEl.innerHTML = listItem
 }
+
+// function renderListItem() {
+//     listEl.innerHTML = ""
+//     leadsArray.forEach(function(lead) {
+//         listEl.innerHTML += `
+//             <li>
+//                 <a target="_blank" href="${lead}">${lead}</a>
+//             </li>
+//         `
+//     })
+// }
 
 // inputEl.addEventListener("keypress", function(event) {
 //     if (event.key === "Enter") {
@@ -50,7 +63,6 @@ getUrlBtn.addEventListener("click", function() {
 })
 
 clearLeadsBtn.addEventListener("click", function() {
-    // history.go(0) - no need to refresh
     localStorage.clear()
     leadsArray = []
     renderListItem()
